@@ -33,7 +33,7 @@ dir = do
       forM_ files $ \f -> do
         fc <- BL.readFile (inDir </> f)
         case Aeson.eitherDecode @Meta fc of
-          Left e -> putStrLn $ "! Skipping " <> f <> " - unable to decode: " <> show e
+          Left e -> error $ "File " <> f <> " failed to decode: " <> show e
           Right meta -> BL.writeFile (outDir </> f) (Aeson.encode meta)
 
     _otherwise -> error "Usage: metadada-convert-dir inDir outDir"

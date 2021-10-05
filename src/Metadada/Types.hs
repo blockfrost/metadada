@@ -46,7 +46,7 @@ instance FromJSON Meta where
     <$> obj .: "subject"
     <*> parseValue obj "name"
     <*> parseValue obj "description"
-    <*> obj .: "policy"
+    <*> obj .:? "policy"
     <*> parseValueMaybe obj "ticker"
     <*> parseValueMaybe obj "url"
     <*> parseValueMaybe obj "logo"
